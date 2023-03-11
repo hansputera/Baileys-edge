@@ -1,0 +1,31 @@
+{
+  "name": "@gampang-pkg/baileys-edge",
+  "version": "1.0.0",
+  "description": "Up-to-date baileys package.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint \"src/**/*.js\" --fix"
+  },
+  "keywords": [
+    "whatsapp",
+    "baileys",
+    "whatsapp-bot",
+    "baileys-edge"
+  ],
+  "author": {
+    "name": "Adiwajshing",
+    "url": "https://github.com/adiwajshing"
+  },
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "Hanif Dwy Putra S",
+      "email": "hello@besecure.eu.org",
+      "url": "https://github.com/hansputera"
+    }
+  ],
+  "devDependencies": {
+    "eslint": "^8.36.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
