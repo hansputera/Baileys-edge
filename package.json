@@ -4,7 +4,8 @@
   "description": "Up-to-date baileys package.",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint \"src/**/*.js\" --fix"
+    "lint": "eslint \"src/**/*.js\" --fix",
+    "build": "esbuild src/index.js --bundle --minify --outfile=dist/index.js --platform=node --format=cjs"
   },
   "keywords": [
     "whatsapp",
@@ -25,6 +26,7 @@
     }
   ],
   "devDependencies": {
+    "esbuild": "^0.17.11",
     "eslint": "^8.36.0",
     "eslint-config-google": "^0.14.0"
   },
@@ -32,7 +34,7 @@
     "@jsdevtools/npm-publish": "^1.4.3",
     "actions-toolkit": "^6.0.1",
     "semver": "^7.3.8",
-    "unfetch": "^5.0.0"
+    "undici": "^5.21.0"
   },
   "type": "module"
 }

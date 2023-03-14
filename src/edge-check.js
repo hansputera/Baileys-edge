@@ -1,4 +1,4 @@
-import fetch from 'unfetch';
+import fetch from 'undici';
 import fs from 'node:fs';
 import semver from 'semver';
 
@@ -17,7 +17,7 @@ export const readEdgeFile = (file) => {
  * @return {Promise<string>}
  */
 export const getLatestCommitDate = async () => {
-  const response = await fetch(edgeUrl)
+  const response = await fetch.request(edgeUrl)
       .catch(() => undefined);
   if (!response) return '';
   else {
@@ -31,7 +31,7 @@ export const getLatestCommitDate = async () => {
  * @return {Promise<string>}
  */
 export const getBaileysEdgeVersion = async () => {
-  const response = await fetch(baileysPackageJsonUrl)
+  const response = await fetch.request(baileysPackageJsonUrl)
       .catch(() => undefined);
 
   if (!response) return '';

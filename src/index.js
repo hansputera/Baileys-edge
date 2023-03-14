@@ -31,7 +31,7 @@ Toolkit.run(async (tool) => {
     await initialEdgeInfo(path.resolve(tool.workspace, checkFile));
   } else {
     const next = await processEdgeInfo(path.resolve(tool.workspace, checkFile));
-    if (next === {} || !('version' in next)) {
+    if (!('version' in next)) {
       tool.exit.success('No available updates');
     } else {
       await tool.exec('git', [
