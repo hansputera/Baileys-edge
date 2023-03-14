@@ -1,0 +1,16 @@
+name: Baileys Edge Workflow
+on:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Update baileys
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Run baileys edge
+        uses: hansputera/Baileys-edge@dev
+        with:
+          cloneDir: './baileys'
+          checkFile: './baileys_check.json'
