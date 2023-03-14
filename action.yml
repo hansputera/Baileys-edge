@@ -1,0 +1,5 @@
+name: baileys-edge
+description: Update baileys edge version to npm package
+runs:
+  using: node16
+  main: dist/index.js

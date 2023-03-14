@@ -27,5 +27,12 @@
   "devDependencies": {
     "eslint": "^8.36.0",
     "eslint-config-google": "^0.14.0"
-  }
+  },
+  "dependencies": {
+    "@jsdevtools/npm-publish": "^1.4.3",
+    "actions-toolkit": "^6.0.1",
+    "semver": "^7.3.8",
+    "unfetch": "^5.0.0"
+  },
+  "type": "module"
 }
