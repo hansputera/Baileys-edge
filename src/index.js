@@ -29,7 +29,7 @@ Toolkit.run(async (tool) => {
       path.resolve(tool.workspace, checkFile),
   ).catch(() => undefined);
 
-  if (!statEdgeFile.isFile()) {
+  if (!statEdgeFile?.isFile()) {
     await initialEdgeInfo(path.resolve(tool.workspace, checkFile));
   } else {
     const next = await processEdgeInfo(path.resolve(tool.workspace, checkFile));
