@@ -65,4 +65,5 @@ Toolkit.run(async (tool) => {
   }
 }, {
   secrets: ['NPM_TOKEN'],
+  event: ['schedule', 'workflow_dispatch'],
 });
