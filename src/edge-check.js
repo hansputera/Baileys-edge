@@ -22,7 +22,7 @@ export const getLatestCommitDate = async () => {
   if (!response) return '';
   else {
     const data = await response.data[0];
-    return data['commit']['comitter']['date'];
+    return data['commit']['committer']['date'];
   }
 };
 
