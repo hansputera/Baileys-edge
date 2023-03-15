@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint \"src/**/*.js\" --fix",
-    "build": "esbuild src/index.js --bundle --minify --outfile=dist/index.js --platform=node --format=cjs"
+    "build": "esbuild src/index.js --bundle --minify --target=node14,node16 --outfile=dist/index.js --platform=node --format=cjs"
   },
   "keywords": [
     "whatsapp",

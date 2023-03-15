@@ -12,6 +12,8 @@ Toolkit.run(async (tool) => {
     return tool.exit.failure('Missing \'cloneDir\' or \'checkFile\' params');
   }
 
+  tool.log.debug('Inputs:', {cloneDir, checkFile});
+
   const statCloneDir = await fs.promises.stat(
       path.resolve(tool.workspace, cloneDir),
   ).catch(() => undefined);
