@@ -22,4 +22,3 @@ jobs:
           checkFile: baileys_check.json
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
