@@ -31,13 +31,13 @@ export const processEdgeClone = async (toolkit, cloneDir, nextVersion) => {
   await toolkit.exec('yarn', ['install']);
 
   toolkit.log.warn('Extracting WAProto');
-  await toolkit.exec('cd', ['proto-extract']);
+  await toolkit.exec('cd', [path.resolve(cloneDir, 'proto-extract')]);
   await toolkit.exec('npm', ['install']);
   await toolkit.exec('npm', ['start']).catch(() => {
     toolkit.log.error('Fail to regenerating the WAProto');
   });
 
-  await toolkit.exec('cd', ['..']);
+  await toolkit.exec('cd', [cloneDir]);
   toolkit.log.warn('Regenerating WAProto protobuf');
   await toolkit.exec('npm', ['run', 'gen:protobuf']);
 
