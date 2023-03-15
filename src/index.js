@@ -62,7 +62,8 @@ Toolkit.run(async (tool) => {
         tool,
         path.resolve(tool.workspace, cloneDir),
         next.version,
-    ).catch(() => {
+    ).catch((e) => {
+      tool.log.error(e);
       tool.exit.failure('Fail to process the edge!');
     }).then(async () => {
       tool.log.info('Edge process done, pushing metadata...');
