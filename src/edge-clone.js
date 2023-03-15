@@ -67,7 +67,7 @@ export const processEdgeClone = async (toolkit, cloneDir, nextVersion) => {
   toolkit.log.warn('Publishing to NPM!');
   await npmPublish({
     package: path.resolve(cloneDir, 'package.json'),
-    token: toolkit.inputs.NPM_TOKEN,
+    token: process.env.NPM_TOKEN,
     access: 'public',
   });
 

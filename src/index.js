@@ -36,6 +36,8 @@ Toolkit.run(async (tool) => {
     forceUp = true;
   }
 
+  tool.token ??= process.env.GITHUB_TOKEN;
+
   tool.log.info('Processing edge file information');
   const next = await processEdgeInfo(
       path.resolve(tool.workspace, checkFile), forceUp,
