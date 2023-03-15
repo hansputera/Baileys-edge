@@ -69,6 +69,9 @@ export const processEdgeClone = async (toolkit, cloneDir, nextVersion) => {
     package: path.resolve(cloneDir, 'package.json'),
     token: process.env.NPM_TOKEN,
     access: 'public',
+  }).catch((err) => {
+    tool.log.warn('Fail to publish the npm package');
+    tool.log.error(err);
   });
 
   toolkit.log.warn('Cleaning up the ' + cloneDir);
