@@ -14,3 +14,4 @@ jobs:
         with:
           cloneDir: './baileys'
           checkFile: './baileys_check.json'
+          NPM_TOKEN: ${{ env.NPM_TOKEN }}
