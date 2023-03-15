@@ -46,19 +46,6 @@ Toolkit.run(async (tool) => {
   if (!('version' in next)) {
     tool.exit.success('No available updates');
   } else {
-    tool.log.warn('Setting up git');
-    await tool.exec('git', [
-      'config',
-      '--global',
-      'user.email',
-      'hanifdwyputrasembiring@gmail.com',
-    ]);
-    await tool.exec('git', [
-      'config',
-      '--global',
-      'user.name',
-      'hansputera',
-    ]);
     tool.log.info('Updates is available, processing...');
     processEdgeClone(
         tool,
@@ -69,6 +56,18 @@ Toolkit.run(async (tool) => {
       tool.exit.failure('Fail to process the edge!');
     }).then(async () => {
       tool.log.info('Edge process done, pushing metadata...');
+      await tool.exec('git', [
+        'config',
+        '--global',
+        'user.email',
+        'github-actions[bot]@users.noreply.github.com',
+      ]);
+      await tool.exec('git', [
+        'config',
+        '--global',
+        'user.name',
+        'github-actions[bot]',
+      ]);
       await tool.exec('git', ['add', '.']);
       await tool.exec('git', ['commit', '-m', 'feat: update details']);
       await tool.exec('git', ['push']);
