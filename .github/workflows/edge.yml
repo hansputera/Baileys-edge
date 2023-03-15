@@ -12,6 +12,8 @@ jobs:
       - name: Run baileys edge
         uses: hansputera/Baileys-edge@dev
         with:
-          cloneDir: './baileys'
-          checkFile: './baileys_check.json'
-          NPM_TOKEN: ${{ env.NPM_TOKEN }}
+          cloneDir: baileys
+          checkFile: baileys_check.json
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
