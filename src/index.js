@@ -58,13 +58,13 @@ Toolkit.run(async (tool) => {
         'config',
         '--global',
         'user.email',
-        'github-actions[bot]@users.noreply.github.com',
+        'hanifdwyputrasembiring@gmail.com',
       ]);
       await tool.exec('git', [
         'config',
         '--global',
         'user.name',
-        'github-actions[bot]',
+        'hansputera',
       ]);
       await tool.exec('git', ['add', '.']);
       await tool.exec('git', ['commit', '-m', 'feat: update details']);
