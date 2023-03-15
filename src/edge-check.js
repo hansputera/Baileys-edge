@@ -21,7 +21,7 @@ export const getLatestCommitDate = async () => {
       .catch(() => undefined);
   if (!response) return '';
   else {
-    const data = await response.json()[0];
+    const data = await response.data[0];
     return data['commit']['comitter']['date'];
   }
 };
@@ -36,7 +36,7 @@ export const getBaileysEdgeVersion = async () => {
 
   if (!response) return '';
   else {
-    return (await response.json())['version'] ?? '';
+    return response.data['version'] ?? '';
   }
 };
 
