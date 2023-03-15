@@ -2,6 +2,11 @@ name: Baileys Edge Workflow
 on:
   schedule:
     - cron: '0 0 * * *'
+  push:
+    branches:
+      - 'master'
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
