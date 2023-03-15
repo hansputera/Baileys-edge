@@ -31,39 +31,38 @@ Toolkit.run(async (tool) => {
 
   if (!statEdgeFile?.isFile()) {
     await initialEdgeInfo(path.resolve(tool.workspace, checkFile));
+  }
+  const next = await processEdgeInfo(path.resolve(tool.workspace, checkFile));
+  if (!('version' in next)) {
+    tool.exit.success('No available updates');
   } else {
-    const next = await processEdgeInfo(path.resolve(tool.workspace, checkFile));
-    if (!('version' in next)) {
-      tool.exit.success('No available updates');
-    } else {
-      await tool.exec('git', [
-        'config',
-        '--global',
-        'user.email',
-        'github-actions[bot]@users.noreply.github.com',
-      ]);
-      await tool.exec('git', [
-        'config',
-        '--global',
-        'user.name',
-        'github-actions[bot]',
-      ]);
-      tool.log.info('Updates is available, processing...');
-      processEdgeClone(
-          tool,
-          path.resolve(tool.workspace, cloneDir),
-          next.version,
-      ).catch(() => {
-        tool.exit.failure('Fail to process the edge!');
-      }).then(async () => {
-        tool.log.info('Edge process done, pushing metadata...');
-        await tool.exec('git', ['add', '.']);
-        await tool.exec('git', ['commit', '-m', 'feat: update details']);
-        await tool.exec('git', ['push']);
+    await tool.exec('git', [
+      'config',
+      '--global',
+      'user.email',
+      'github-actions[bot]@users.noreply.github.com',
+    ]);
+    await tool.exec('git', [
+      'config',
+      '--global',
+      'user.name',
+      'github-actions[bot]',
+    ]);
+    tool.log.info('Updates is available, processing...');
+    processEdgeClone(
+        tool,
+        path.resolve(tool.workspace, cloneDir),
+        next.version,
+    ).catch(() => {
+      tool.exit.failure('Fail to process the edge!');
+    }).then(async () => {
+      tool.log.info('Edge process done, pushing metadata...');
+      await tool.exec('git', ['add', '.']);
+      await tool.exec('git', ['commit', '-m', 'feat: update details']);
+      await tool.exec('git', ['push']);
 
-        tool.exit.success('Success!');
-      });
-    }
+      tool.exit.success('Success!');
+    });
   }
 }, {
   secrets: ['NPM_TOKEN'],
