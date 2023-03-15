@@ -27,7 +27,7 @@ export const processEdgeClone = async (toolkit, cloneDir, nextVersion) => {
     'master',
   ]);
 
-  await toolkit.exec('yarn', ['install'], {
+  await toolkit.exec('npm', ['install'], {
     cwd: cloneDir,
   });
 
