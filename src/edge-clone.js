@@ -27,19 +27,24 @@ export const processEdgeClone = async (toolkit, cloneDir, nextVersion) => {
     'master',
   ]);
 
-  await toolkit.exec('cd', [cloneDir]);
-  await toolkit.exec('yarn', ['install']);
+  await toolkit.exec('yarn', ['install'], {
+    cwd: cloneDir,
+  });
 
   toolkit.log.warn('Extracting WAProto');
-  await toolkit.exec('cd', [path.resolve(cloneDir, 'proto-extract')]);
-  await toolkit.exec('npm', ['install']);
-  await toolkit.exec('npm', ['start']).catch(() => {
+  await toolkit.exec('npm', ['install'], {
+    cwd: path.resolve(cloneDir, 'proto-extract'),
+  });
+  await toolkit.exec('npm', ['start'], {
+    cwd: path.resolve(cloneDir, 'proto-extract'),
+  }).catch(() => {
     toolkit.log.error('Fail to regenerating the WAProto');
   });
 
-  await toolkit.exec('cd', [cloneDir]);
   toolkit.log.warn('Regenerating WAProto protobuf');
-  await toolkit.exec('npm', ['run', 'gen:protobuf']);
+  await toolkit.exec('npm', ['run', 'gen:protobuf'], {
+    cwd: cloneDir,
+  });
 
   toolkit.log.warn('Rewriting package name...');
 
@@ -55,7 +60,9 @@ export const processEdgeClone = async (toolkit, cloneDir, nextVersion) => {
   );
 
   toolkit.log.warn('Compiling entire library');
-  await toolkit.exec('npm', ['run', 'build:tsc']);
+  await toolkit.exec('npm', ['run', 'build:tsc'], {
+    cwd: cloneDir,
+  });
 
   toolkit.log.warn('Publishing to NPM!');
   await npmPublish({
