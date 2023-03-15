@@ -7,6 +7,7 @@ import {processEdgeClone} from './edge-clone';
 
 Toolkit.run(async (tool) => {
   const {cloneDir, checkFile} = tool.inputs;
+  let forceUp = false;
 
   if (!cloneDir || !checkFile) {
     return tool.exit.failure('Missing \'cloneDir\' or \'checkFile\' params');
@@ -30,12 +31,20 @@ Toolkit.run(async (tool) => {
   ).catch(() => undefined);
 
   if (!statEdgeFile?.isFile()) {
+    tool.log.warn('Initializing edge file');
     await initialEdgeInfo(path.resolve(tool.workspace, checkFile));
+    forceUp = true;
   }
-  const next = await processEdgeInfo(path.resolve(tool.workspace, checkFile));
+
+  tool.log.info('Processing edge file information');
+  const next = await processEdgeInfo(
+      path.resolve(tool.workspace, checkFile), forceUp,
+  );
+
   if (!('version' in next)) {
     tool.exit.success('No available updates');
   } else {
+    tool.log.warn('Setting up git');
     await tool.exec('git', [
       'config',
       '--global',
