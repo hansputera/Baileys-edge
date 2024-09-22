@@ -41,6 +41,11 @@ export const processEdgeClone = async (toolkit, cloneDir, nextVersion) => {
     toolkit.log.error('Fail to regenerating the WAProto');
   });
 
+  toolkit.log.warn('Installing protobufjs-cli');
+  await toolkit.exec('npm', ['install', 'protobufjs-cli', '-D'], {
+    cwd: cloneDir,
+  });
+
   toolkit.log.warn('Regenerating WAProto protobuf');
   await toolkit.exec('npm', ['run', 'gen:protobuf'], {
     cwd: cloneDir,
